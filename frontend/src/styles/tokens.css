@@ -1,0 +1,238 @@
+/*
+  Design tokens.
+
+  The palette is built around the physical letter tiles used in Orton-Gillingham
+  lessons: plain tiles for consonants, salmon tiles for vowels. Everything
+  else stays quiet so the words are the loudest thing on screen.
+
+  Readability choices follow the British Dyslexia Association style guide:
+  no pure white background by default, dark grey text instead of black,
+  sans-serif type, generous letter, word and line spacing, left aligned,
+  no italics or all caps. Every size is in rem so the learner's text size
+  setting scales the whole interface, not just paragraphs.
+*/
+
+:root {
+  --paper: #eef2f3;
+  --surface: #f8fafa;
+  --ink: #24313b;
+  --ink-soft: #52626e;
+  --line: #c9d4d9;
+
+  --tile: #ffffff;
+  --tile-edge: #b9c6cc;
+  --vowel: #f9d6c9;
+  --vowel-edge: #d9a08b;
+
+  --action: #136f73;
+  --action-hover: #0e5b5f;
+  --action-ink: #ffffff;
+  --action-soft: #d5ebea;
+
+  --good: #2e7d4f;
+  --good-soft: #ddf0e3;
+  --warn: #8f5612;
+  --warn-soft: #f6e7cf;
+
+  /* One colour per syllable type, used as a bar under the syllable. */
+  --syl-closed: #3b6ea8;
+  --syl-open: #2e8b57;
+  --syl-vce: #8a5cb8;
+  --syl-vowel_team: #c2570c;
+  --syl-r_controlled: #b03a5b;
+  --syl-consonant_le: #6b7a1f;
+  --syl-irregular: #7a7a7a;
+
+  --font-body: "Lexend", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-size: 20px;
+  --tracking: 0.05em;
+  --leading: 1.7;
+
+  --radius-tile: 10px;
+  --radius-control: 12px;
+  --radius-stage: 22px;
+
+  --focus: 0 0 0 3px var(--paper), 0 0 0 6px var(--action);
+  color-scheme: light;
+}
+
+[data-theme="cream"] {
+  --paper: #f6efda;
+  --surface: #fbf7ea;
+  --line: #d9cfb3;
+  --tile-edge: #c9bd9c;
+}
+
+[data-theme="dark"] {
+  --paper: #1d252b;
+  --surface: #263039;
+  --ink: #e6ebee;
+  --ink-soft: #a9b6be;
+  --line: #3a4853;
+  --tile: #33414b;
+  --tile-edge: #4d5d69;
+  --vowel: #6a4337;
+  --vowel-edge: #94624f;
+  --action: #5cc0c0;
+  --action-hover: #79d0d0;
+  --action-ink: #0f1a1f;
+  --action-soft: #234246;
+  --good: #7fd3a0;
+  --good-soft: #213b2c;
+  --warn: #f0c27b;
+  --warn-soft: #3d3220;
+  --syl-closed: #7fa8dc;
+  --syl-open: #6fcf97;
+  --syl-vce: #c19ae6;
+  --syl-vowel_team: #f39a5b;
+  --syl-r_controlled: #ec8aa6;
+  --syl-consonant_le: #c3d06a;
+  color-scheme: dark;
+}
+
+[data-theme="high_contrast"] {
+  --paper: #ffffff;
+  --surface: #ffffff;
+  --ink: #000000;
+  --ink-soft: #1a1a1a;
+  --line: #000000;
+  --tile: #ffffff;
+  --tile-edge: #000000;
+  --vowel: #ffe36e;
+  --vowel-edge: #000000;
+  --action: #0039a6;
+  --action-hover: #002a7a;
+  --action-soft: #dce6ff;
+  --good: #00602b;
+  --warn: #7a3d00;
+}
+
+[data-font="atkinson"] {
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+[data-font="opendyslexic"] {
+  --font-body: "OpenDyslexic", "Lexend", system-ui, sans-serif;
+}
+[data-font="system"] {
+  --font-body: system-ui, -apple-system, "Segoe UI", Verdana, sans-serif;
+}
+
+[data-syllable-colours="off"] {
+  --syl-closed: var(--line);
+  --syl-open: var(--line);
+  --syl-vce: var(--line);
+  --syl-vowel_team: var(--line);
+  --syl-r_controlled: var(--line);
+  --syl-consonant_le: var(--line);
+  --syl-irregular: var(--line);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--text-size);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: var(--leading);
+  letter-spacing: var(--tracking);
+  word-spacing: 0.16em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5em;
+}
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.25rem;
+}
+h3 {
+  font-size: 1.05rem;
+}
+p {
+  margin: 0 0 1em;
+  max-width: 62ch;
+}
+em,
+i {
+  font-style: normal; /* italics are hard to read; emphasise with weight instead */
+  font-weight: 600;
+}
+a {
+  color: var(--action);
+  text-underline-offset: 0.2em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: var(--radius-control);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Coloured overlays, like the acetate sheets some readers put over a page. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  z-index: 100;
+}
+.overlay[data-colour="blue"] {
+  background: rgb(120 170 230 / 0.22);
+}
+.overlay[data-colour="yellow"] {
+  background: rgb(250 225 90 / 0.25);
+}
+.overlay[data-colour="green"] {
+  background: rgb(130 205 150 / 0.22);
+}
+.overlay[data-colour="rose"] {
+  background: rgb(240 150 170 / 0.2);
+}
+.overlay[data-colour="peach"] {
+  background: rgb(250 180 130 / 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
